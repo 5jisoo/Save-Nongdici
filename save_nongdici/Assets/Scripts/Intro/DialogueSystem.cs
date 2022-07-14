@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DialogueSystem : MonoBehaviour
     public Dialogue info;
     public Animator anim;
     public Animator anim2;
+    private string textSentence;
 
     Queue <string> sentences = new Queue<string>();
 
@@ -52,13 +54,43 @@ public class DialogueSystem : MonoBehaviour
         {
             anim2.SetBool("head_tilt", true);
         }
-        txtSentence.text = sentences.Dequeue();
+        
+        //txtSentence.text = sentences.Dequeue();
+        textSentence = sentences.Dequeue();
+        
+        StartCoroutine(_typing());
     }
 
     private void End()
     {
+
         anim.SetBool("isClose", true);
         txtSentence.text = string.Empty;
+        var btnSkip = GameObject.FindWithTag("btnSkip");
+        if (btnSkip)
+        {
+            Destroy(btnSkip);
+            Invoke("NextScene", 0.5f);
+        }
+        else
+        {
+            Debug.Log("No game object called wibble found"); 
+            /*btnSkip을 가진 GameObject가 없을 경우 null이 반환될 수 있음.*/
+        }
+        
+    }
+    IEnumerator _typing()
+    {
+        for (int i = 0; i <= textSentence.Length; i++)
+        {
+            txtSentence.text = textSentence.Substring(0, i);
+
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private void NextScene() {
+        SceneManager.LoadScene("3_ChooseName");
     }
 }
 

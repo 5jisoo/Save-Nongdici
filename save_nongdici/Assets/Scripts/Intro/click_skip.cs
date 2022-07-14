@@ -7,6 +7,6 @@ public class click_skip : MonoBehaviour
 {
     public void SceneSKIP()
     {
-        SceneManager.LoadScene("ChooseName");
+        SceneManager.LoadScene("3_ChooseName");
     }
 }

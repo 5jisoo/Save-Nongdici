@@ -14,7 +14,7 @@ public class StartGameBtn : MonoBehaviour
 
     public void SceneChange()
     {
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene("2_Intro");
     }
 
     public void ClickPlayer()
