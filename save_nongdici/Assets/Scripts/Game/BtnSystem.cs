@@ -6,10 +6,25 @@ public class BtnSystem : MonoBehaviour
 {
     public GameObject GameSystem;
     public GameObject howToPlay;
+    public Animator howToPlayAnim;
+
+    public void Start()
+    {
+        howToPlayAnim = howToPlay.GetComponent<Animator>();
+    }
 
     public void skipHowToPlay()
     {
-        howToPlay.SetActive(false);
+        howToPlayAnim.SetTrigger("skip");
+    }
+
+    public void moveRight()
+    {
+        howToPlayAnim.SetTrigger("moveRight");
     }
     
+    public void moveLeft()
+    {
+        howToPlayAnim.SetTrigger("moveLeft");
+    }
 }
