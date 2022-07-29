@@ -16,6 +16,7 @@ public class BtnSystem : MonoBehaviour
     public void skipHowToPlay()
     {
         howToPlayAnim.SetTrigger("skip");
+        GameSystem.GetComponent<GameSystem>().gameStart = true;
     }
 
     public void moveRight()
