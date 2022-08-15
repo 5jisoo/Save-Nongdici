@@ -8,55 +8,57 @@ public class PlayerStateController : MonoBehaviour
     public GameObject sidePlayer;
     public GameObject gameSystem;
 
-    public float speed;
-    private float inputHorizontal, inputVertical;
-
-    public bool gameStart;
-
     public Transform currentPosition;
 
-    
+    public float speed;
 
-    Rigidbody2D rb;
-    Animator frontAnim, sideAnim;
+    public bool gameStart;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        frontAnim = frontPlayer.GetComponent<Animator>();
-        sideAnim = sidePlayer.GetComponent<Animator>();
+        frontPlayer.SetActive(true);
+        sidePlayer.SetActive(false);
+
         currentPosition = frontPlayer.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (inputHorizontal == 0)
-        {
-            frontPlayer.SetActive(true);
-            sidePlayer.SetActive(false);
-        }
-        else
+        gameStart = gameSystem.GetComponent<GameSystem>().gameStart;
+
+        Vector3 moveVelocity = Vector3.zero;
+
+        if (Input.GetAxisRaw("Horizontal") != 0)    // 가로로 이동중일때
         {
             frontPlayer.SetActive(false);
             sidePlayer.SetActive(true);
+            if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                moveVelocity = Vector3.left;
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                moveVelocity = Vector3.right;
+            }
         }
-    }
 
-    void FixedUpdate()
-    {
-        gameStart = gameSystem.GetComponent<GameSystem>().gameStart;
-        if (gameStart)
+        else if (Input.GetAxisRaw("Vertical") != 0)      // 세로로 이동중일때
         {
-            frontAnim.SetBool("gameStart", true);
-            inputHorizontal = Input.GetAxisRaw("Horizontal");
-            inputVertical = Input.GetAxisRaw("Vertical");
-            rb.velocity = new Vector2(speed * inputHorizontal, speed * inputVertical);
+            sidePlayer.SetActive(false);
+            frontPlayer.SetActive(true);
+            if (Input.GetAxisRaw("Vertical") < 0)
+            {
+                moveVelocity = Vector3.down;
+            }
+            else if (Input.GetAxisRaw("Vertical") > 0)
+            {
+                moveVelocity = Vector3.up;
+            }
         }
-        else
-        {
-            frontAnim.SetBool("gameStart", false);
-        }
+
+        currentPosition.position += moveVelocity * speed * Time.deltaTime;
+
     }
 }
