@@ -46,16 +46,11 @@ public class Spawner : MonoBehaviour
 
                 var randomSpawnPoint = spawnPoints[randomPoints];
 
-                var vector = randomSpawnPoint.position;
-                vector.x += 0.28f;
-                vector.y -= 0.04f;
-                randomSpawnPoint.position = vector;
-
                 var clone = Instantiate(carrots[0], randomSpawnPoint.position, Quaternion.identity);
                 clone.SetActive(true);
                 spawnCheck[randomPoints] = true;
 
-                StartCoroutine(grow1(clone, randomSpawnPoint, randomPoints));
+                StartCoroutine(grow1(clone, randomSpawnPoint.position, randomPoints));
 
                 if (startSpawnTime > minTimeBtwSpawns)
                 {
@@ -71,14 +66,14 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    IEnumerator grow1(GameObject clone, Transform position, int point)
+    IEnumerator grow1(GameObject clone, Vector3 position, int point)
     {
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
         Destroy(clone);
 
-        var vector = position.position;
+        Vector3 vector = position;
         vector.x += 0.07f;
         vector.y += 0.43f;
 
@@ -95,7 +90,7 @@ public class Spawner : MonoBehaviour
 
         Destroy(clone);
 
-        var vector = position;
+        Vector3 vector = position;
         vector.x -= 0.1f;
         vector.y += 0.32f;
 
@@ -113,7 +108,7 @@ public class Spawner : MonoBehaviour
 
         Destroy(clone);
 
-        var vector = position;
+        Vector3 vector = position;
         vector.y -= 0.45f;
 
         var clone2 = Instantiate(carrots[3], vector, Quaternion.identity);

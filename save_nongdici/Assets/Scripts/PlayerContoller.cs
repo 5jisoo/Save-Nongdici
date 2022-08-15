@@ -12,7 +12,6 @@ public class PlayerContoller : MonoBehaviour
     public GameObject playerStateController;
     public Transform currentPosition;
 
-    public float speed;
 
     Animator anim;
 
