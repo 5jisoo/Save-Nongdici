@@ -16,7 +16,6 @@ public class Spawner : MonoBehaviour
     public float decrease;
 
     private Transform ex_randomSpawn;
-    private Transform randomSpawnPoint;
 
     public bool GameStart;
 
@@ -39,13 +38,13 @@ public class Spawner : MonoBehaviour
             if (timeSpawns <= 0)
             {
                 var randomPoints = Random.Range(0, spawnPoints.Length);
-
+                
                 while (spawnCheck[randomPoints] == true)
                 {
                     randomPoints = Random.Range(0, spawnPoints.Length);
                 }
 
-                randomSpawnPoint = spawnPoints[randomPoints];
+                var randomSpawnPoint = spawnPoints[randomPoints];
 
                 var vector = randomSpawnPoint.position;
                 vector.x += 0.28f;
@@ -56,7 +55,7 @@ public class Spawner : MonoBehaviour
                 clone.SetActive(true);
                 spawnCheck[randomPoints] = true;
 
-                StartCoroutine(grow1(clone, randomSpawnPoint));
+                StartCoroutine(grow1(clone, randomSpawnPoint, randomPoints));
 
                 if (startSpawnTime > minTimeBtwSpawns)
                 {
@@ -72,7 +71,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    IEnumerator grow1(GameObject clone, Transform position)
+    IEnumerator grow1(GameObject clone, Transform position, int point)
     {
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
@@ -82,28 +81,46 @@ public class Spawner : MonoBehaviour
         var vector = position.position;
         vector.x += 0.07f;
         vector.y += 0.43f;
-        position.position = vector;
 
-        var clone2 = Instantiate(carrots[1], position.position, Quaternion.identity);
+        var clone2 = Instantiate(carrots[1], vector, Quaternion.identity);
         clone2.SetActive(true);
 
-        StartCoroutine(grow2(clone2, position));
+        StartCoroutine(grow2(clone2, vector, point));
     }
 
-    IEnumerator grow2(GameObject clone, Transform position)
+    IEnumerator grow2(GameObject clone, Vector3 position, int point)
     {
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
         Destroy(clone);
 
-        var vector = position.position;
+        var vector = position;
         vector.x -= 0.1f;
         vector.y += 0.32f;
-        position.position = vector;
 
-        var clone2 = Instantiate(carrots[2], position.position, Quaternion.identity);
+        var clone2 = Instantiate(carrots[2], vector, Quaternion.identity);
         clone2.SetActive(true);
 
+        StartCoroutine(grow3(clone2, vector, point));
+
+    }
+
+    IEnumerator grow3(GameObject clone, Vector3 position, int point)
+    {
+        float randomGrowTime = Random.Range(2, 3);
+        yield return new WaitForSeconds(randomGrowTime);
+
+        Destroy(clone);
+
+        var vector = position;
+        vector.y -= 0.45f;
+
+        var clone2 = Instantiate(carrots[3], vector, Quaternion.identity);
+        clone2.SetActive(true);
+
+        Destroy(clone2, .5f);
+
+        spawnCheck[point] = false;
     }
 }

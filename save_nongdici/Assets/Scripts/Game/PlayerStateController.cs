@@ -12,6 +12,8 @@ public class PlayerStateController : MonoBehaviour
 
     public float speed;
 
+    public Animator frontanim;
+
     public bool gameStart;
 
 
@@ -19,6 +21,8 @@ public class PlayerStateController : MonoBehaviour
     {
         frontPlayer.SetActive(true);
         sidePlayer.SetActive(false);
+
+        frontanim = frontPlayer.GetComponent<Animator>();
 
         currentPosition = frontPlayer.transform;
     }
@@ -28,37 +32,45 @@ public class PlayerStateController : MonoBehaviour
     {
         gameStart = gameSystem.GetComponent<GameSystem>().gameStart;
 
-        Vector3 moveVelocity = Vector3.zero;
-
-        if (Input.GetAxisRaw("Horizontal") != 0)    // 가로로 이동중일때
+        if (gameStart)
         {
-            frontPlayer.SetActive(false);
-            sidePlayer.SetActive(true);
-            if (Input.GetAxisRaw("Horizontal") < 0)
-            {
-                moveVelocity = Vector3.left;
-            }
-            else if (Input.GetAxisRaw("Horizontal") > 0)
-            {
-                moveVelocity = Vector3.right;
-            }
-        }
+            frontanim.SetBool("gameStart", true);
+            Vector3 moveVelocity = Vector3.zero;
 
-        else if (Input.GetAxisRaw("Vertical") != 0)      // 세로로 이동중일때
+            if (Input.GetAxisRaw("Horizontal") != 0)    // 가로로 이동중일때
+            {
+                frontPlayer.SetActive(false);
+                sidePlayer.SetActive(true);
+                if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    moveVelocity = Vector3.left;
+                }
+                else if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    moveVelocity = Vector3.right;
+                }
+            }
+
+            else                                        // 세로로 이동중일때
+            {
+                sidePlayer.SetActive(false);
+                frontPlayer.SetActive(true);
+                if (Input.GetAxisRaw("Vertical") < 0)
+                {
+                    moveVelocity = Vector3.down;
+                }
+                else if (Input.GetAxisRaw("Vertical") > 0)
+                {
+                    moveVelocity = Vector3.up;
+                }
+            }
+
+            currentPosition.position += moveVelocity * speed * Time.deltaTime;
+        }
+        else
         {
-            sidePlayer.SetActive(false);
-            frontPlayer.SetActive(true);
-            if (Input.GetAxisRaw("Vertical") < 0)
-            {
-                moveVelocity = Vector3.down;
-            }
-            else if (Input.GetAxisRaw("Vertical") > 0)
-            {
-                moveVelocity = Vector3.up;
-            }
+            frontanim.SetBool("gameStart", false);
         }
-
-        currentPosition.position += moveVelocity * speed * Time.deltaTime;
 
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SidePlayerMove : MonoBehaviour
 {
-
+    public GameObject sidePlayer;
     public GameObject playerStateController;
     public Transform currentPosition;
 
@@ -22,19 +22,18 @@ public class SidePlayerMove : MonoBehaviour
     {
         currentPosition = playerStateController.GetComponent<PlayerStateController>().currentPosition;
         transform.position = currentPosition.position;
-        if(Input.GetAxisRaw("Horizontal") != 0)
-        {
-            if (Input.GetAxisRaw("Horizontal") > 0) //move right
-            {
-                anim.SetBool("walkLeft", false);
-                anim.SetBool("walkRight", true);
-            }
-            else if (Input.GetAxisRaw("Horizontal") < 0) //move left
-            {
-                anim.SetBool("walkRight", false);
-                anim.SetBool("walkLeft", true);
-            }
-        }
-    }
 
+        if (Input.GetAxisRaw("Horizontal") > 0) //move right
+        {
+            anim.SetBool("walkLeft", false);
+            anim.SetBool("walkRight", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0) //move left
+        {
+            sidePlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
+            anim.SetBool("walkRight", false);
+            anim.SetBool("walkLeft", true);
+        }
+        
+    }
 }
