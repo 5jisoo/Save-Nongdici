@@ -4,35 +4,22 @@ using UnityEngine;
 using System.IO;
 
 
-public class PlayerContoller : MonoBehaviour
+public class PlayerName : MonoBehaviour
 {
+    public PlayerData playerData;
 
-    public GameObject playerStateController;
-    public Transform currentPosition;
-
-
-    Animator anim;
-
+    // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        currentPosition = playerStateController.GetComponent<PlayerStateController>().currentPosition;
-        transform.position = currentPosition.position;
-        if (Input.GetAxisRaw("Vertical") != 0)
-        {
-            anim.SetBool("playerWalk", true);
-        }
-        else
-        {
-            anim.SetBool("playerWalk", false);
-        }
+
     }
 
-/*
     [ContextMenu("To Json Data")]
     public void SavePlayerDataToJson()
     {
@@ -45,9 +32,15 @@ public class PlayerContoller : MonoBehaviour
     public void LoadPlayerDataFromJson()
     {
         string path = Path.Combine(Application.dataPath, "playerData.json");
-        string jsonData =  File.ReadAllText(path);
+        string jsonData = File.ReadAllText(path);
         playerData = JsonUtility.FromJson<PlayerData>(jsonData);
-    }*/
+    }
+}
 
+[System.Serializable]
+public class PlayerData
+{
+    public string name;
+    public int score = 0;
 }
 

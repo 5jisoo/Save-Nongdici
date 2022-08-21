@@ -21,7 +21,7 @@ public class SelectName : MonoBehaviour
 
     void Start()
     {
-        playerData = Player.GetComponent<PlayerContoller>().playerData;
+        playerData = Player.GetComponent<PlayerName>().playerData;
         confirmNameAnim = confirmName.GetComponent<Animator>();
     }
 
@@ -31,7 +31,7 @@ public class SelectName : MonoBehaviour
         {
             insertNamePlz.SetActive(false);
             playerData.name = text.text;
-            Player.GetComponent<PlayerContoller>().SavePlayerDataToJson();
+            Player.GetComponent<PlayerName>().SavePlayerDataToJson();
             print("저장완료");
             confirmNameTxt.text = "'" + playerData.name + "'" + " (으)로";
             confirmNameAnim.SetTrigger("SelectName");

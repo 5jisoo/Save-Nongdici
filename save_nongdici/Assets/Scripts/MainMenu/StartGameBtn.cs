@@ -20,7 +20,7 @@ public class StartGameBtn : MonoBehaviour
     public void ClickPlayer()
     {
         anim.SetBool("CharacClick", true);
-        print("PlayerClick");
+        // print("PlayerClick");
         Invoke("ClickPlayerReset", 0.4f);
     }
 
