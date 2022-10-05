@@ -79,7 +79,6 @@ public class Spawner : MonoBehaviour
         try
         {
             isObjectDestroyed = clone.GetComponent<Carrot_2>().isObjectDestroyed;
-            clone.GetComponent<Carrot_2>().currentRandomPoint = point;
 
             Destroy(clone);
 
@@ -95,6 +94,8 @@ public class Spawner : MonoBehaviour
         }
         catch(MissingReferenceException e)
         {
+            spawnCheck[point] = false;
+
             // print("새싹 이후 grow 중단 시킴");
         }
         
@@ -110,7 +111,6 @@ public class Spawner : MonoBehaviour
         try
         {
             isObjectDestroyed = clone.GetComponent<Carrot_1>().isObjectDestroyed;
-            clone.GetComponent<Carrot_1>().currentRandomPoint = point;
 
             Destroy(clone);
 
@@ -126,6 +126,7 @@ public class Spawner : MonoBehaviour
         }
         catch(MissingReferenceException e)
         {
+            spawnCheck[point] = false;
             // print("덜 자란 당근 이후 grow 중단 시킴");
         }
 
@@ -141,7 +142,6 @@ public class Spawner : MonoBehaviour
         try
         {
             isObjectDestroyed = clone.GetComponent<Carrot_0>().isObjectDestroyed;
-            clone.GetComponent<Carrot_0>().currentRandomPoint = point;
 
             Destroy(clone);
 
@@ -157,6 +157,7 @@ public class Spawner : MonoBehaviour
 
         } catch(MissingReferenceException e)
         {
+            spawnCheck[point] = false;
             // print("전부 자란 당근 이후 grow 중단 시킴"); //확인 완
         }
 
