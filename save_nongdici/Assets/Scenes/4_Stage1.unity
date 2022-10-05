@@ -1879,6 +1879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
+  spawner: {fileID: 75387190}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -2446,6 +2447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
+  spawner: {fileID: 75387190}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -2495,6 +2497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
+  spawner: {fileID: 75387190}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -2669,7 +2672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3726691803936931909, guid: 748d04f3d6eb53e468dbf4caefb8ebed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726691803936931911, guid: 748d04f3d6eb53e468dbf4caefb8ebed, type: 3}
       propertyPath: m_RootOrder
@@ -3057,7 +3060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6661039133785180636, guid: 9cf6f4d905aee004591fc9a4f21b65f7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6661039133785180638, guid: 9cf6f4d905aee004591fc9a4f21b65f7, type: 3}
       propertyPath: m_RootOrder
@@ -3172,6 +3175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rottencarrot
       objectReference: {fileID: 0}
+    - target: {fileID: 8420148034480058247, guid: af2df60ce05e2064daba88e3042fdac6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af2df60ce05e2064daba88e3042fdac6, type: 3}
 --- !u!1 &6670596591319144900 stripped
@@ -3193,6 +3200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
+  spawner: {fileID: 75387190}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -3279,7 +3287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7708937750212370807, guid: 2e7a1c7bb501a1841ba0f799eea1c6cd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e7a1c7bb501a1841ba0f799eea1c6cd, type: 3}

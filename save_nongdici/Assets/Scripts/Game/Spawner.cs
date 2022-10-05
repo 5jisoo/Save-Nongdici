@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject GameSystem;
 
     public bool[] spawnCheck;
+    public int randomPoints;
     public Transform[] spawnPoints;
     public GameObject[] carrots;
 
@@ -39,7 +40,7 @@ public class Spawner : MonoBehaviour
         {
             if (timeSpawns <= 0)
             {
-                var randomPoints = Random.Range(0, spawnPoints.Length);
+                randomPoints = Random.Range(0, spawnPoints.Length);
                 
                 while (spawnCheck[randomPoints] == true)
                 {
@@ -78,7 +79,7 @@ public class Spawner : MonoBehaviour
         try
         {
             isObjectDestroyed = clone.GetComponent<Carrot_2>().isObjectDestroyed;
-
+            clone.GetComponent<Carrot_2>().currentRandomPoint = point;
 
             Destroy(clone);
 
@@ -109,6 +110,7 @@ public class Spawner : MonoBehaviour
         try
         {
             isObjectDestroyed = clone.GetComponent<Carrot_1>().isObjectDestroyed;
+            clone.GetComponent<Carrot_1>().currentRandomPoint = point;
 
             Destroy(clone);
 
@@ -139,6 +141,7 @@ public class Spawner : MonoBehaviour
         try
         {
             isObjectDestroyed = clone.GetComponent<Carrot_0>().isObjectDestroyed;
+            clone.GetComponent<Carrot_0>().currentRandomPoint = point;
 
             Destroy(clone);
 

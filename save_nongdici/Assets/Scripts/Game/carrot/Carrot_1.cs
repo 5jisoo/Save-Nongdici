@@ -9,6 +9,8 @@ public class Carrot_1 : MonoBehaviour
 
     public GameObject playerStateController;
     public GameObject scoreController;
+    public GameObject spawner;
+    public int currentRandomPoint;
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -37,6 +39,7 @@ public class Carrot_1 : MonoBehaviour
         if (distance <= 2.0f)
         {
             scoreController.GetComponent<ScoreController>().totalscore += 5;
+            spawner.GetComponent<Spawner>().spawnCheck[currentRandomPoint] = false;
             print("덜 큰 당근 수확!");
             isObjectDestroyed = true;
             Destroy(gameObject);
