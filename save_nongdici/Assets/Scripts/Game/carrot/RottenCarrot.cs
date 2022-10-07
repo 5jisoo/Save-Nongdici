@@ -9,8 +9,7 @@ public class RottenCarrot : MonoBehaviour
 
     public GameObject playerStateController;
     public GameObject scoreController;
-    public GameObject spawner;
-    public int currentRandomPoint;
+    
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -36,8 +35,7 @@ public class RottenCarrot : MonoBehaviour
 
         if (distance <= 2.0f)
         {
-            scoreController.GetComponent<ScoreController>().totalscore -= 3;
-            spawner.GetComponent<Spawner>().spawnCheck[currentRandomPoint] = false;
+            scoreController.GetComponent<ScoreController>().totalscore -= 5;
             print("썩은 당근 수확!");
             Destroy(gameObject);
         }

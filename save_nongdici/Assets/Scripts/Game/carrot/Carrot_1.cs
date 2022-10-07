@@ -7,6 +7,7 @@ public class Carrot_1 : MonoBehaviour
 {
     private Vector3 thisPosition;
 
+
     public GameObject playerStateController;
     public GameObject scoreController;
 
@@ -36,7 +37,7 @@ public class Carrot_1 : MonoBehaviour
 
         if (distance <= 2.0f)
         {
-            scoreController.GetComponent<ScoreController>().totalscore += 5;
+            scoreController.GetComponent<ScoreController>().totalscore += 3;
             print("덜 큰 당근 수확!");
             isObjectDestroyed = true;
             Destroy(gameObject);

@@ -36,7 +36,7 @@ public class Carrot_2 : MonoBehaviour
 
         if (distance <= 2.0f)
         {
-            scoreController.GetComponent<ScoreController>().totalscore += 3;
+            scoreController.GetComponent<ScoreController>().totalscore -= 3;
             print("»õ½Ï ¼öÈ®!");
             isObjectDestroyed = true;
             Destroy(gameObject);
