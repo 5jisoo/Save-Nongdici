@@ -10,6 +10,7 @@ public class Carrot_1 : MonoBehaviour
 
     public GameObject playerStateController;
     public GameObject scoreController;
+    public GameObject GetCarrots;
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -39,6 +40,7 @@ public class Carrot_1 : MonoBehaviour
         {
             scoreController.GetComponent<ScoreController>().totalscore += 3;
             print("덜 큰 당근 수확!");
+            GetCarrots.GetComponent<GetCarrots>().isHarvested(1, thisPosition);
             isObjectDestroyed = true;
             Destroy(gameObject);
         }

@@ -9,7 +9,8 @@ public class RottenCarrot : MonoBehaviour
 
     public GameObject playerStateController;
     public GameObject scoreController;
-    
+    public GameObject GetCarrots;
+
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -37,6 +38,7 @@ public class RottenCarrot : MonoBehaviour
         {
             scoreController.GetComponent<ScoreController>().totalscore -= 5;
             print("썩은 당근 수확!");
+            GetCarrots.GetComponent<GetCarrots>().isHarvested(3, thisPosition);
             Destroy(gameObject);
         }
 

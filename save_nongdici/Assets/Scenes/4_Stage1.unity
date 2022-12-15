@@ -1830,7 +1830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1290325335
 Transform:
   m_ObjectHideFlags: 0
@@ -1983,7 +1983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1329925536
 Transform:
   m_ObjectHideFlags: 0
@@ -2090,8 +2090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
-  harvestCarrot: {fileID: 1329925535}
-  harvestAnim: {fileID: 0}
+  GetCarrots: {fileID: 1920859116}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -2139,7 +2138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1383739048
 Transform:
   m_ObjectHideFlags: 0
@@ -2509,7 +2508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1739390132
 Transform:
   m_ObjectHideFlags: 0
@@ -2867,10 +2866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6584c1ab5a54d140b58baf190930db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  harvestCarrot: {fileID: 1739390131}
-  harvestAnim: {fileID: 0}
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
+  GetCarrots: {fileID: 1920859116}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -2918,10 +2916,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d82f477d0685604a857109acb2250bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  harvestCarrot: {fileID: 1383739047}
-  harvestAnim: {fileID: 0}
   playerStateController: {fileID: 2069551542}
   scoreController: {fileID: 1304708268}
+  GetCarrots: {fileID: 1920859116}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
@@ -2996,6 +2993,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cef68e480233f439f75abbaab92217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getCarrots:
+  - {fileID: 1329925535}
+  - {fileID: 1383739047}
+  - {fileID: 1739390131}
+  - {fileID: 1290325334}
 --- !u!1 &2011064988
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,9 +3669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
-  harvestCarrot: {fileID: 1290325334}
-  harvestAnim: {fileID: 0}
   scoreController: {fileID: 1304708268}
+  GetCarrots: {fileID: 1920859116}
   playerPosition: {fileID: 0}
   playerVectorPosition: {x: 0, y: 0, z: 0}
   distance: 0
