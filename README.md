@@ -1,6 +1,6 @@
 # 👩🏻‍🌾 농디치 가문 🥕🌾
 
-<img src = "https://github.com/5jisoo/Save-Nongdici/blob/main/image/horiz.png?raw=true" width=90%/>
+<img src = "https://github.com/5jisoo/Save-Nongdici/blob/main/image/horiz.png?raw=true"/>
 <br>
 
 ## 🌾 제작자
