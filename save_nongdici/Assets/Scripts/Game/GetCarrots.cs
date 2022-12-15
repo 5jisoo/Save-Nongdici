@@ -27,16 +27,21 @@ public class GetCarrots : MonoBehaviour
     public void isHarvested(int num, Vector3 carrotPos)
     {
         carrotPos.y += 1;
-        getCarrots[num].transform.position = carrotPos;
-        getCarrots[num].SetActive(true);
-        anims[num].SetBool("isHarvested", true);
-        StartCoroutine(setBack(num));
+
+        print(carrotPos);   // È®ÀÎ¿ë
+
+        var clone = Instantiate(getCarrots[num], carrotPos, Quaternion.identity);   // spawn
+        clone.SetActive(true);
+        clone.GetComponent<Animator>().SetBool("isHarvested", true);
+
+        StartCoroutine(setBack(num, clone));
     }
 
-    IEnumerator setBack(int num) {
+    IEnumerator setBack(int num, GameObject clone) {
 
         yield return new WaitForSeconds(1f);
-        anims[num].SetBool("isHarvested", false);
+        clone.GetComponent<Animator>().SetBool("isHarvested", false);
+        clone.SetActive(false);
     }
 
 }
