@@ -91,4 +91,33 @@ public class PlayerStateController : MonoBehaviour
         }
 
     }
+
+    public void isHarvesting(int itemNum)
+    {
+        sidePlayer.SetActive(false);
+        frontPlayer.SetActive(true);    // frontPlayer가 움직일 수 있도록.
+
+        string s = "";
+        if (itemNum == 0)
+        {
+            s = "harvestingGlove";
+        }
+        else if (itemNum == 1)
+        {
+            s = "harvestingHomi";
+        }
+        else if (itemNum == 2)
+        {
+            s = "harvestingSickle";
+        }
+
+        frontanim.SetBool(s, true);
+        StartCoroutine(returnBack(s));
+    }
+
+    IEnumerator returnBack(string s)
+    {
+        yield return new WaitForSeconds(1f);
+        frontanim.SetBool(s, false);
+    }
 }

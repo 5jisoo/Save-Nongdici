@@ -6,6 +6,7 @@ public class InventorySystem : MonoBehaviour
 {
     // 장갑 - 호미 - 낫
     public GameObject[] frontPlayerItems;
+    public GameObject frontRightGlove;   // 오른쪽 장갑 따로 설정필요
 
     public GameObject[] sidePlayerItems;
     public GameObject sideRightGlove;   // 오른쪽 장갑 따로 설정필요
@@ -64,6 +65,7 @@ public class InventorySystem : MonoBehaviour
                 if(point == 0)
                 {
                     sideRightGlove.SetActive(true);
+                    frontRightGlove.SetActive(true);
                 }
             }
             else

@@ -36,6 +36,7 @@ public class RottenCarrot : MonoBehaviour
 
     private void OnMouseDown()
     {
+        playerStateController.GetComponent<PlayerStateController>().isHarvesting(currentItem);
         distance = Vector2.Distance(thisPosition, playerVectorPosition);
 
         if (distance <= 2.0f)

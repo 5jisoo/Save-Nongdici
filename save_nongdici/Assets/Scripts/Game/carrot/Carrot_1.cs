@@ -41,6 +41,7 @@ public class Carrot_1 : MonoBehaviour
 
         if (distance <= 2.0f)
         {
+            playerStateController.GetComponent<PlayerStateController>().isHarvesting(currentItem);
             if (currentItem != 0)
             {
                 scoreController.GetComponent<ScoreController>().totalscore -= 3;
