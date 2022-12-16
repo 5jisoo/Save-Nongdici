@@ -26,7 +26,7 @@ public class GetCarrots : MonoBehaviour
 
     public void isHarvested(int num, Vector3 carrotPos)
     {
-        carrotPos.z -= 30;
+        carrotPos.z -= 30;     // 위로 올라오게 하기
         // print(carrotPos);   // 확인용
 
         var clone = Instantiate(getCarrots[num], carrotPos, Quaternion.identity);   // spawn
