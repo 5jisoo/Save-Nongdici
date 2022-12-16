@@ -26,9 +26,8 @@ public class GetCarrots : MonoBehaviour
 
     public void isHarvested(int num, Vector3 carrotPos)
     {
-        carrotPos.y += 1;
-
-        print(carrotPos);   // 확인용
+        carrotPos.z -= 30;
+        // print(carrotPos);   // 확인용
 
         var clone = Instantiate(getCarrots[num], carrotPos, Quaternion.identity);   // spawn
         clone.SetActive(true);
@@ -39,7 +38,7 @@ public class GetCarrots : MonoBehaviour
 
     IEnumerator setBack(int num, GameObject clone) {
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
         clone.GetComponent<Animator>().SetBool("isHarvested", false);
         clone.SetActive(false);
     }
