@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BtnSystem : MonoBehaviour
 {
@@ -27,5 +28,10 @@ public class BtnSystem : MonoBehaviour
     public void moveLeft()
     {
         howToPlayAnim.SetTrigger("moveLeft");
+    }
+
+    public void stageClear()
+    {
+        SceneManager.LoadScene("5_Stage2");
     }
 }
