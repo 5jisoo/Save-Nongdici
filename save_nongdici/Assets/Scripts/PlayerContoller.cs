@@ -33,12 +33,12 @@ public class PlayerContoller : MonoBehaviour
         }
     }
 
-    public void StartHarvesting()
+    public void StartAnimating()
     {
         isAnimating = true;
     }
 
-    public void FinHarvesting()
+    public void FinAnimating()
     {
         isAnimating = false;
         anim.Rebind();

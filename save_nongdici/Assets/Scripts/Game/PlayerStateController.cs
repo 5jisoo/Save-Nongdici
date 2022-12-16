@@ -40,8 +40,7 @@ public class PlayerStateController : MonoBehaviour
             frontanim.SetBool("gameStart", true);
             Vector3 moveVelocity = Vector3.zero;
 
-            // 가로로 이동중일 때 + 수확애니메이션 끝나면
-
+            // 가로로 이동중일 때 + 세로 애니메이션 끝나면
             if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 sidePlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
