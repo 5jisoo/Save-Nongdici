@@ -10,6 +10,7 @@ public class Carrot_0 : MonoBehaviour
     private Vector3 thisPosition;
 
 
+    public GameObject inventorySystem;
     public GameObject playerStateController;
     public GameObject scoreController;
     public GameObject GetCarrots;
@@ -21,13 +22,14 @@ public class Carrot_0 : MonoBehaviour
 
     public bool isObjectDestroyed = false;
 
-    private Animator test;
+    private int currentItem;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         thisPosition = this.gameObject.transform.position;
-        test = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class Carrot_0 : MonoBehaviour
     {
         playerPosition = playerStateController.GetComponent<PlayerStateController>().currentPosition;
         playerVectorPosition = playerPosition.position;
+        currentItem = inventorySystem.GetComponent<InventorySystem>().point;
     }
 
     private void OnMouseDown()
@@ -44,9 +47,18 @@ public class Carrot_0 : MonoBehaviour
 
         if (distance <= 2.0f)
         {
-            scoreController.GetComponent<ScoreController>().totalscore += 10;
-            print("정상 적인 수확!");
-            GetCarrots.GetComponent<GetCarrots>().isHarvested(2, thisPosition);
+            if (currentItem != 0)
+            {
+                scoreController.GetComponent<ScoreController>().totalscore -= 3;
+                print("도구 선택 오류!");
+                GetCarrots.GetComponent<GetCarrots>().isHarvested(4, thisPosition);
+            }
+            else
+            {
+                scoreController.GetComponent<ScoreController>().totalscore += 10;
+                print("정상 적인 수확!");
+                GetCarrots.GetComponent<GetCarrots>().isHarvested(2, thisPosition);
+            }
             isObjectDestroyed = true;
             Destroy(gameObject);
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject GameSystem;
+    public GameObject scoreController;
 
     public bool[] spawnCheck;
     public int randomPoints;
@@ -151,8 +152,9 @@ public class Spawner : MonoBehaviour
             var clone2 = Instantiate(carrots[3], vector, Quaternion.identity);
             clone2.SetActive(true);
 
-            Destroy(clone2, .5f);
+            scoreController.GetComponent<ScoreController>().totalscore -= 3;    // 작물이 썩은 경우
 
+            Destroy(clone2, .5f);
             spawnCheck[point] = false;
 
         } catch(MissingReferenceException e)

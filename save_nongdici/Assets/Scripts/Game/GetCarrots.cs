@@ -5,9 +5,9 @@ using UnityEngine;
 public class GetCarrots : MonoBehaviour
 {
 
-    // 순서대로 새싹 - 어린 - 건강 - 썩은
+    // 순서대로 새싹 - 어린 - 건강 - 썩은 - 도구 잘못 선택
     public GameObject[] getCarrots;
-    private Animator[] anims = new Animator[4];
+    private Animator[] anims = new Animator[5];
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,7 @@ public class GetCarrots : MonoBehaviour
         anims[1] = getCarrots[1].GetComponent<Animator>();
         anims[2] = getCarrots[2].GetComponent<Animator>();
         anims[3] = getCarrots[3].GetComponent<Animator>();
+        anims[4] = getCarrots[4].GetComponent<Animator>();  // 잘못수확한 경우
     }
 
     // Update is called once per frame
