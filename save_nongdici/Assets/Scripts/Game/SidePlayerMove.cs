@@ -6,14 +6,17 @@ public class SidePlayerMove : MonoBehaviour
 {
 
     public GameObject playerStateController;
+    public GameObject playerController;
     public Transform currentPosition;
 
-    Animator anim;
+    Animator sideAnim;
+    Animator frontAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        sideAnim = GetComponent<Animator>();
+        frontAnim = playerController.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,14 +27,14 @@ public class SidePlayerMove : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0) //move right
         {
-            anim.SetBool("walkLeft", false);
-            anim.SetBool("walkRight", true);
+            sideAnim.SetBool("walkLeft", false);
+            sideAnim.SetBool("walkRight", true);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0) //move left
         {
             //sidePlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
-            anim.SetBool("walkRight", false);
-            anim.SetBool("walkLeft", true);
+            sideAnim.SetBool("walkRight", false);
+            sideAnim.SetBool("walkLeft", true);
         }
         
     }

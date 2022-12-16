@@ -10,6 +10,7 @@ public class PlayerContoller : MonoBehaviour
     public GameObject playerStateController;
     public Transform currentPosition;
 
+    public bool isAnimating = false;
 
     Animator anim;
 
@@ -32,22 +33,34 @@ public class PlayerContoller : MonoBehaviour
         }
     }
 
-/*
-    [ContextMenu("To Json Data")]
-    public void SavePlayerDataToJson()
+    public void StartHarvesting()
     {
-        string jsonData = JsonUtility.ToJson(playerData, true);
-        string path = Path.Combine(Application.dataPath, "playerData.json");
-        File.WriteAllText(path, jsonData);
+        isAnimating = true;
     }
 
-    [ContextMenu("From Json Data")]
-    public void LoadPlayerDataFromJson()
+    public void FinHarvesting()
     {
-        string path = Path.Combine(Application.dataPath, "playerData.json");
-        string jsonData =  File.ReadAllText(path);
-        playerData = JsonUtility.FromJson<PlayerData>(jsonData);
-    }*/
+        isAnimating = false;
+        anim.Rebind();
+        anim.Play("FrontPlayerBreathing");
+    }
+
+    /*
+        [ContextMenu("To Json Data")]
+        public void SavePlayerDataToJson()
+        {
+            string jsonData = JsonUtility.ToJson(playerData, true);
+            string path = Path.Combine(Application.dataPath, "playerData.json");
+            File.WriteAllText(path, jsonData);
+        }
+
+        [ContextMenu("From Json Data")]
+        public void LoadPlayerDataFromJson()
+        {
+            string path = Path.Combine(Application.dataPath, "playerData.json");
+            string jsonData =  File.ReadAllText(path);
+            playerData = JsonUtility.FromJson<PlayerData>(jsonData);
+        }*/
 
 }
 

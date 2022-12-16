@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateController : MonoBehaviour
@@ -13,8 +11,12 @@ public class PlayerStateController : MonoBehaviour
     public float speed;
 
     public Animator frontanim;
+    public Animator sideAnim;
 
     public bool gameStart;
+
+    // 만약 진행중이라 true면 setActive하지 못하게 막아야함.
+    public bool currentAnimState;
 
 
     void Start()
@@ -23,6 +25,7 @@ public class PlayerStateController : MonoBehaviour
         sidePlayer.SetActive(false);
 
         frontanim = frontPlayer.GetComponent<Animator>();
+        sideAnim = sidePlayer.GetComponent<Animator>();
 
         currentPosition = frontPlayer.transform;
     }
@@ -37,22 +40,29 @@ public class PlayerStateController : MonoBehaviour
             frontanim.SetBool("gameStart", true);
             Vector3 moveVelocity = Vector3.zero;
 
-            if (Input.GetAxisRaw("Horizontal") != 0 )    // 가로로 이동중일 때
+            // 가로로 이동중일 때 + 수확애니메이션 끝나면
+
+            if (Input.GetAxisRaw("Horizontal") != 0)
             {
                 sidePlayer.transform.rotation = Quaternion.Euler(0, 0, 0);
-                frontPlayer.SetActive(false);
-                sidePlayer.SetActive(true);
-                if (Input.GetAxisRaw("Horizontal") < 0) //왼쪽으로 이동
+                if ((currentAnimState = frontPlayer.GetComponent<PlayerContoller>().isAnimating ) == false)
                 {
-                    moveVelocity = Vector3.left;
-                }
-                else if (Input.GetAxisRaw("Horizontal") > 0) //오른쪽으로 이동
-                {
-                    moveVelocity = Vector3.right;
+                    frontPlayer.SetActive(false);
+                    sidePlayer.SetActive(true);
+                    if (Input.GetAxisRaw("Horizontal") < 0) //왼쪽으로 이동
+                    {
+                        moveVelocity = Vector3.left;
+                    }
+                    else if (Input.GetAxisRaw("Horizontal") > 0) //오른쪽으로 이동
+                    {
+                        moveVelocity = Vector3.right;
+                    }
                 }
             }
 
-            else if (Input.GetAxisRaw("Vertical") != 0)   // 세로로 이동중일 때
+
+            // 세로로 이동중일 때
+            else if (Input.GetAxisRaw("Vertical") != 0)
             {
                 sidePlayer.SetActive(false);
                 frontPlayer.SetActive(true);
@@ -66,7 +76,7 @@ public class PlayerStateController : MonoBehaviour
                 }
             }
 
-            else                                            // 가만히 있을 때
+            else                                            // 가만히 있을 때 + 애니메이션이 끝났을 때
             {
                 sidePlayer.SetActive(false);
                 frontPlayer.SetActive(true);
@@ -94,6 +104,7 @@ public class PlayerStateController : MonoBehaviour
 
     public void isHarvesting(int itemNum)
     {
+        // 애니메이션이 끝났는지 확인 필요
         sidePlayer.SetActive(false);
         frontPlayer.SetActive(true);    // frontPlayer가 움직일 수 있도록.
 
@@ -101,6 +112,7 @@ public class PlayerStateController : MonoBehaviour
         if (itemNum == 0)
         {
             s = "harvestingGlove";
+
         }
         else if (itemNum == 1)
         {
@@ -111,13 +123,6 @@ public class PlayerStateController : MonoBehaviour
             s = "harvestingSickle";
         }
 
-        frontanim.SetBool(s, true);
-        StartCoroutine(returnBack(s));
-    }
-
-    IEnumerator returnBack(string s)
-    {
-        yield return new WaitForSeconds(1f);
-        frontanim.SetBool(s, false);
+        frontanim.SetTrigger(s);
     }
 }

@@ -5647,6 +5647,7 @@ MonoBehaviour:
   currentPosition: {fileID: 0}
   speed: 10
   frontanim: {fileID: 0}
+  sideAnim: {fileID: 0}
   gameStart: 0
 --- !u!4 &2069551544
 Transform:
@@ -5788,6 +5789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
   currentPosition: {fileID: 0}
+  isAnimating: 0
 --- !u!1001 &3726691802224448752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6175,6 +6177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStateController: {fileID: 2069551542}
+  playerController: {fileID: 7810420734846359892}
   currentPosition: {fileID: 0}
 --- !u!1001 &6661039132448192872
 PrefabInstance:
