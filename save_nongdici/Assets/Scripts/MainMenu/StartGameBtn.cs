@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartGameBtn : MonoBehaviour
 {
     public Animator anim;
+    public GameObject settingWindow;
 
     public void Start()
     {
@@ -27,5 +28,15 @@ public class StartGameBtn : MonoBehaviour
     public void ClickPlayerReset()
     {
         anim.SetBool("CharacClick", false);
+    }
+
+    public void ClickSettingBtn()
+    {
+        settingWindow.SetActive(true);
+    }
+
+    public void ClickSettingX()
+    {
+        settingWindow.SetActive(false);
     }
 }
