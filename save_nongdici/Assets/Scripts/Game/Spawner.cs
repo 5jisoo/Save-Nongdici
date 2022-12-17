@@ -87,10 +87,9 @@ public class Spawner : MonoBehaviour
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
-        try
+        if ((bool)clone)
         {
-            // isObjectDestroyed = clone.GetComponent<Carrot_2>().isObjectDestroyed;
-
+            // 오브젝트가 살아있을 경우
             Destroy(clone);
 
             Vector3 vector = position;
@@ -116,15 +115,14 @@ public class Spawner : MonoBehaviour
             }
 
             StartCoroutine(grow2(clone2, vector, point, cropType));
-
         }
-        catch (MissingReferenceException e)
+        else
         {
+            // 오브젝트가 이미 수확된 경우.
             spawnCheck[point] = false;
 
-            print("새싹 이후 grow 중단 시킴");
+            // print("새싹 이후 grow 중단 시킴");
         }
-
     }
 
 
@@ -134,10 +132,9 @@ public class Spawner : MonoBehaviour
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
-        try
+        if((bool)clone)
         {
-            // isObjectDestroyed = clone.GetComponent<Carrot_1>().isObjectDestroyed;
-
+            // 아직 수확 안됨
             Destroy(clone);
 
             Vector3 vector = position;
@@ -165,10 +162,12 @@ public class Spawner : MonoBehaviour
             StartCoroutine(grow3(clone2, vector, point, cropType));
 
         }
-        catch (MissingReferenceException e)
+        else
         {
+            // 수확 됨
             spawnCheck[point] = false;
-            // print("덜 자란 당근 이후 grow 중단 시킴");
+
+            // print("덜 자란 작물 이후 grow 중단 시킴");
         }
 
     }
@@ -180,7 +179,7 @@ public class Spawner : MonoBehaviour
         float randomGrowTime = Random.Range(2, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
-        try
+        if ((bool) clone)
         {
             // isObjectDestroyed = clone.GetComponent<Carrot_0>().isObjectDestroyed;
 
@@ -213,10 +212,11 @@ public class Spawner : MonoBehaviour
             spawnCheck[point] = false;
 
         }
-        catch (MissingReferenceException e)
+        else
         {
             spawnCheck[point] = false;
-            // print("전부 자란 당근 이후 grow 중단 시킴"); //확인 완
+            
+            // print("전부 자란 작물 이후 grow 중단 시킴"); //확인 완
         }
 
 
