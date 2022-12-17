@@ -21,7 +21,7 @@ public class GameSystem : MonoBehaviour
     {
         gameStart = false;
         clearAnim = stageClearWindow.GetComponent<Animator>();
-        clearScore = stageCheck;    // 잠깐 테스트용 - 조정해야함
+        clearScore = stageCheck*50;    
     }
 
     // Update is called once per frame
