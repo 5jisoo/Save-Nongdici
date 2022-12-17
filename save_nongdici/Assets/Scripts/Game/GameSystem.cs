@@ -13,20 +13,22 @@ public class GameSystem : MonoBehaviour
     public GameObject stageClearWindow;
 
     private int currentScore;
-    private Animator thisAnim;
+    private int clearScore;
+    private Animator clearAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         gameStart = false;
-        thisAnim = stageClearWindow.GetComponent<Animator>();
+        clearAnim = stageClearWindow.GetComponent<Animator>();
+        clearScore = stageCheck;    // 잠깐 테스트용 - 조정해야함
     }
 
     // Update is called once per frame
     void Update()
     {
         currentScore = scoreController.GetComponent<ScoreController>().totalscore;
-        if (currentScore >= 50)
+        if (currentScore >= clearScore)
         {
             stageClear();
         }
@@ -34,6 +36,7 @@ public class GameSystem : MonoBehaviour
 
     void stageClear()
     {
-        thisAnim.SetBool("clear", true);
+        gameStart = false;
+        clearAnim.SetBool("clear", true);
     }
 }

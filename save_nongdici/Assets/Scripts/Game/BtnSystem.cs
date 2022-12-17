@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,29 +7,34 @@ public class BtnSystem : MonoBehaviour
     public GameObject howToPlay;
     public Animator howToPlayAnim;
 
+    public int currentStage;
+
     public void Start()
     {
+
         howToPlayAnim = howToPlay.GetComponent<Animator>();
+
     }
 
     public void skipHowToPlay()
     {
+
         howToPlayAnim.SetTrigger("skip");
         GameSystem.GetComponent<GameSystem>().gameStart = true;
+
     }
 
     public void moveRight()
     {
+
         howToPlayAnim.SetTrigger("moveRight");
-    }
-    
-    public void moveLeft()
-    {
-        howToPlayAnim.SetTrigger("moveLeft");
+
     }
 
-    public void stageClear()
+    public void moveLeft()
     {
-        SceneManager.LoadScene("5_Stage2");
+
+        howToPlayAnim.SetTrigger("moveLeft");
+
     }
 }
