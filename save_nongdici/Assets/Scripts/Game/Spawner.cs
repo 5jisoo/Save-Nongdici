@@ -110,6 +110,8 @@ public class Spawner : MonoBehaviour
             }
             else
             {
+                vector.x -= 0.2f;
+                vector.y -= 0.2f;
                 clone2 = Instantiate(rice[1], vector, Quaternion.identity);
                 clone2.SetActive(true);
             }
@@ -150,11 +152,14 @@ public class Spawner : MonoBehaviour
             }
             else if (cropType == 2)
             {
+                vector.x -= 0.3f;
                 clone2 = Instantiate(sweetPotato[2], vector, Quaternion.identity);
                 clone2.SetActive(true);
             }
             else
             {
+                vector.x += 0.4f;
+                vector.y += 0.2f;
                 clone2 = Instantiate(rice[2], vector, Quaternion.identity);
                 clone2.SetActive(true);
             }
@@ -197,11 +202,15 @@ public class Spawner : MonoBehaviour
             }
             else if (cropType == 2)
             {
+                vector.x += 0.3f;
+                vector.y -= 0.2f;
                 clone2 = Instantiate(sweetPotato[3], vector, Quaternion.identity);
                 clone2.SetActive(true);
             }
             else
             {
+                vector.x -= 0.2f;
+                vector.y +=0.1f;
                 clone2 = Instantiate(rice[3], vector, Quaternion.identity);
                 clone2.SetActive(true);
             }
