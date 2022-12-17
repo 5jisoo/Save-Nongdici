@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
@@ -38,5 +39,22 @@ public class GameSystem : MonoBehaviour
     {
         gameStart = false;
         clearAnim.SetBool("clear", true);
+        Invoke("nextScene", 5f);
+    }
+
+    public void nextScene()
+    {
+        if (stageCheck == 1)
+        {
+            SceneManager.LoadScene("5_Stage2");
+        }
+        else if (stageCheck == 2)
+        {
+            SceneManager.LoadScene("6_Stage3");
+        }
+        else
+        {
+            SceneManager.LoadScene("Ending");
+        }
     }
 }

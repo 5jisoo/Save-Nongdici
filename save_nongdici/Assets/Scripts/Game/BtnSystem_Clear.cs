@@ -34,7 +34,5 @@ public class BtnSystem_Clear : MonoBehaviour
         {
             SceneManager.LoadScene("Ending");
         }
-        
-        
     }
 }
