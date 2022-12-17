@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -7,10 +6,17 @@ public class Spawner : MonoBehaviour
     public GameObject GameSystem;
     public GameObject scoreController;
 
+    // 현재 스테이지
+    public int currentStage;
+
     public bool[] spawnCheck;
     public int randomPoints;
     public Transform[] spawnPoints;
+
+    // 생성할 아이템
     public GameObject[] carrots;
+    public GameObject[] sweetPotato;
+    public GameObject[] rice;
 
     public float timeSpawns;
     public float startSpawnTime;
@@ -26,8 +32,9 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentStage = GameSystem.GetComponent<GameSystem>().stageCheck;
         spawnCheck = new bool[11];
-        for (int i=0; i<11; i++)
+        for (int i = 0; i < 11; i++)
         {
             spawnCheck[i] = false;
         }
@@ -42,7 +49,7 @@ public class Spawner : MonoBehaviour
             if (timeSpawns <= 0)
             {
                 randomPoints = Random.Range(0, spawnPoints.Length);
-                
+
                 while (spawnCheck[randomPoints] == true)
                 {
                     randomPoints = Random.Range(0, spawnPoints.Length);
@@ -54,7 +61,10 @@ public class Spawner : MonoBehaviour
                 clone.SetActive(true);
                 spawnCheck[randomPoints] = true;
 
-                StartCoroutine(grow1(clone, randomSpawnPoint.position, randomPoints));
+                // 스테이지에 따른 작물 랜덤 선택 (당근 - 고구마 - 벼)
+                int randomCrop = Random.Range(1, currentStage + 1);
+                StartCoroutine(grow1(clone, randomSpawnPoint.position, randomPoints, randomCrop));
+
 
                 if (startSpawnTime > minTimeBtwSpawns)
                 {
@@ -72,14 +82,14 @@ public class Spawner : MonoBehaviour
 
 
     // 새싹 -> 덜 자란 당근
-    IEnumerator grow1(GameObject clone, Vector3 position, int point)
+    IEnumerator grow1(GameObject clone, Vector3 position, int point, int cropType)
     {
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
         try
         {
-            isObjectDestroyed = clone.GetComponent<Carrot_2>().isObjectDestroyed;
+            // isObjectDestroyed = clone.GetComponent<Carrot_2>().isObjectDestroyed;
 
             Destroy(clone);
 
@@ -87,31 +97,46 @@ public class Spawner : MonoBehaviour
             vector.x += 0.07f;
             vector.y += 0.43f;
 
-            var clone2 = Instantiate(carrots[1], vector, Quaternion.identity);
-            clone2.SetActive(true);
+            GameObject clone2;
 
-            StartCoroutine(grow2(clone2, vector, point));
+            if (cropType == 1)
+            {
+                clone2 = Instantiate(carrots[1], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+            else if (cropType == 2)
+            {
+                clone2 = Instantiate(sweetPotato[1], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+            else
+            {
+                clone2 = Instantiate(rice[1], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+
+            StartCoroutine(grow2(clone2, vector, point, cropType));
 
         }
-        catch(MissingReferenceException e)
+        catch (MissingReferenceException e)
         {
             spawnCheck[point] = false;
 
-            // print("새싹 이후 grow 중단 시킴");
+            print("새싹 이후 grow 중단 시킴");
         }
-        
+
     }
 
 
     // 덜 자란 당근 -> 다 자란 당근
-    IEnumerator grow2(GameObject clone, Vector3 position, int point)
+    IEnumerator grow2(GameObject clone, Vector3 position, int point, int cropType)
     {
         float randomGrowTime = Random.Range(1, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
         try
         {
-            isObjectDestroyed = clone.GetComponent<Carrot_1>().isObjectDestroyed;
+            // isObjectDestroyed = clone.GetComponent<Carrot_1>().isObjectDestroyed;
 
             Destroy(clone);
 
@@ -119,13 +144,28 @@ public class Spawner : MonoBehaviour
             vector.x -= 0.1f;
             vector.y += 0.32f;
 
-            var clone2 = Instantiate(carrots[2], vector, Quaternion.identity);
-            clone2.SetActive(true);
+            GameObject clone2;
 
-            StartCoroutine(grow3(clone2, vector, point));
+            if (cropType == 1)
+            {
+                clone2 = Instantiate(carrots[2], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+            else if (cropType == 2)
+            {
+                clone2 = Instantiate(sweetPotato[2], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+            else
+            {
+                clone2 = Instantiate(rice[2], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+
+            StartCoroutine(grow3(clone2, vector, point, cropType));
 
         }
-        catch(MissingReferenceException e)
+        catch (MissingReferenceException e)
         {
             spawnCheck[point] = false;
             // print("덜 자란 당근 이후 grow 중단 시킴");
@@ -135,34 +175,50 @@ public class Spawner : MonoBehaviour
 
 
     // 다 자란 당근 -> 썩은 당근
-    IEnumerator grow3(GameObject clone, Vector3 position, int point)
+    IEnumerator grow3(GameObject clone, Vector3 position, int point, int cropType)
     {
         float randomGrowTime = Random.Range(2, 3);
         yield return new WaitForSeconds(randomGrowTime);
 
         try
         {
-            isObjectDestroyed = clone.GetComponent<Carrot_0>().isObjectDestroyed;
+            // isObjectDestroyed = clone.GetComponent<Carrot_0>().isObjectDestroyed;
 
             Destroy(clone);
 
             Vector3 vector = position;
             vector.y -= 0.45f;
 
-            var clone2 = Instantiate(carrots[3], vector, Quaternion.identity);
-            clone2.SetActive(true);
+            GameObject clone2;
+
+            if (cropType == 1)
+            {
+                clone2 = Instantiate(carrots[3], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+            else if (cropType == 2)
+            {
+                clone2 = Instantiate(sweetPotato[3], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
+            else
+            {
+                clone2 = Instantiate(rice[3], vector, Quaternion.identity);
+                clone2.SetActive(true);
+            }
 
             scoreController.GetComponent<ScoreController>().totalscore -= 3;    // 작물이 썩은 경우
 
             Destroy(clone2, .5f);
             spawnCheck[point] = false;
 
-        } catch(MissingReferenceException e)
+        }
+        catch (MissingReferenceException e)
         {
             spawnCheck[point] = false;
             // print("전부 자란 당근 이후 grow 중단 시킴"); //확인 완
         }
 
-       
+
     }
 }

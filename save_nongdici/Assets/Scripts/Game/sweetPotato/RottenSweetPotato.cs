@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Ω‚¿∫ ¥Á±Ÿ
-public class RottenCarrot : MonoBehaviour
+public class RottenSweetPotato : MonoBehaviour
 {
     private Vector3 thisPosition;
 
     public GameObject inventorySystem;
     public GameObject playerStateController;
-    public GameObject GetCarrots;
+    public GameObject getPotato;
 
 
     public Transform playerPosition;
@@ -18,6 +17,7 @@ public class RottenCarrot : MonoBehaviour
     public float distance;
 
     private int currentItem;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class RottenCarrot : MonoBehaviour
         if (distance <= 2.0f)
         {
             print("Ω‚¿∫ ¥Á±Ÿ ºˆ»Æ!");
-            GetCarrots.GetComponent<GetCarrots>().isHarvested(3, thisPosition);
+            getPotato.GetComponent<GetSweetPotato>().isHarvested(3, thisPosition);
             Destroy(gameObject);
         }
 

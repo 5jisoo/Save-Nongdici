@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 조금 덜 큰 당근
-public class Carrot_1 : MonoBehaviour
+public class YoungSweetPotato : MonoBehaviour
 {
     private Vector3 thisPosition;
 
@@ -11,7 +10,7 @@ public class Carrot_1 : MonoBehaviour
     public GameObject inventorySystem;
     public GameObject playerStateController;
     public GameObject scoreController;
-    public GameObject GetCarrots;
+    public GameObject getPotato;
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -23,6 +22,7 @@ public class Carrot_1 : MonoBehaviour
     private int currentItem;
 
     public int currentStageScore;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,17 +46,17 @@ public class Carrot_1 : MonoBehaviour
         if (distance <= 2.0f)
         {
             playerStateController.GetComponent<PlayerStateController>().isHarvesting(currentItem);
-            if (currentItem != 0)
+            if (currentItem != 1)
             {
                 scoreController.GetComponent<ScoreController>().totalscore += (currentStageScore - 6);
                 print("도구 선택 오류!");
-                GetCarrots.GetComponent<GetCarrots>().isHarvested(4, thisPosition);
+                getPotato.GetComponent<GetSweetPotato>().isHarvested(4, thisPosition);
             }
             else
             {
                 scoreController.GetComponent<ScoreController>().totalscore += currentStageScore;
                 print("덜 큰 당근 수확!");
-                GetCarrots.GetComponent<GetCarrots>().isHarvested(1, thisPosition);
+                getPotato.GetComponent<GetSweetPotato>().isHarvested(1, thisPosition);
             }
             isObjectDestroyed = true;
             Destroy(gameObject);

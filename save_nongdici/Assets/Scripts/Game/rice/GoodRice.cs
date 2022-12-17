@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 조금 덜 큰 당근
-public class Carrot_1 : MonoBehaviour
+public class GoodRice : MonoBehaviour
 {
     private Vector3 thisPosition;
 
@@ -11,7 +10,7 @@ public class Carrot_1 : MonoBehaviour
     public GameObject inventorySystem;
     public GameObject playerStateController;
     public GameObject scoreController;
-    public GameObject GetCarrots;
+    public GameObject getRice;
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -28,7 +27,7 @@ public class Carrot_1 : MonoBehaviour
     void Start()
     {
         thisPosition = this.gameObject.transform.position;
-        currentStageScore = 4 - gameSystem.GetComponent<GameSystem>().stageCheck;
+        currentStageScore = 11 - gameSystem.GetComponent<GameSystem>().stageCheck;
     }
 
     // Update is called once per frame
@@ -42,25 +41,25 @@ public class Carrot_1 : MonoBehaviour
     private void OnMouseDown()
     {
         distance = Vector2.Distance(thisPosition, playerVectorPosition);
+        // print("거리 계산 완료" + distance);
 
         if (distance <= 2.0f)
         {
             playerStateController.GetComponent<PlayerStateController>().isHarvesting(currentItem);
-            if (currentItem != 0)
+            if (currentItem != 2)
             {
-                scoreController.GetComponent<ScoreController>().totalscore += (currentStageScore - 6);
+                scoreController.GetComponent<ScoreController>().totalscore += (currentStageScore - 13);
                 print("도구 선택 오류!");
-                GetCarrots.GetComponent<GetCarrots>().isHarvested(4, thisPosition);
+                getRice.GetComponent<GetRice>().isHarvested(4, thisPosition);
             }
             else
             {
                 scoreController.GetComponent<ScoreController>().totalscore += currentStageScore;
-                print("덜 큰 당근 수확!");
-                GetCarrots.GetComponent<GetCarrots>().isHarvested(1, thisPosition);
+                print("정상 적인 수확!");
+                getRice.GetComponent<GetRice>().isHarvested(2, thisPosition);
             }
             isObjectDestroyed = true;
             Destroy(gameObject);
         }
-
     }
 }

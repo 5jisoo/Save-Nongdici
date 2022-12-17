@@ -9,7 +9,7 @@ public class Carrot_0 : MonoBehaviour
 
     private Vector3 thisPosition;
 
-
+    public GameObject gameSystem;
     public GameObject inventorySystem;
     public GameObject playerStateController;
     public GameObject scoreController;
@@ -24,12 +24,13 @@ public class Carrot_0 : MonoBehaviour
 
     private int currentItem;
 
-
+    public int currentStageScore;
 
     // Start is called before the first frame update
     void Start()
     {
         thisPosition = this.gameObject.transform.position;
+        currentStageScore = 11 - gameSystem.GetComponent<GameSystem>().stageCheck;
     }
 
     // Update is called once per frame
@@ -50,13 +51,13 @@ public class Carrot_0 : MonoBehaviour
             playerStateController.GetComponent<PlayerStateController>().isHarvesting(currentItem);
             if (currentItem != 0)
             {
-                scoreController.GetComponent<ScoreController>().totalscore -= 3;
+                scoreController.GetComponent<ScoreController>().totalscore += (currentStageScore - 13);
                 print("도구 선택 오류!");
                 GetCarrots.GetComponent<GetCarrots>().isHarvested(4, thisPosition);
             }
             else
             {
-                scoreController.GetComponent<ScoreController>().totalscore += 10;
+                scoreController.GetComponent<ScoreController>().totalscore += currentStageScore;
                 print("정상 적인 수확!");
                 GetCarrots.GetComponent<GetCarrots>().isHarvested(2, thisPosition);
             }

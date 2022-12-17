@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
+    // 현재 스테이지 - 각 스테이지마다 미리 조정해두기.
+    public int stageCheck;
 
     public bool gameStart;
     public int score;

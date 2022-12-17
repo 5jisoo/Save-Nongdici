@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 조금 덜 큰 당근
-public class Carrot_1 : MonoBehaviour
+public class YoungRice : MonoBehaviour
 {
     private Vector3 thisPosition;
 
@@ -11,7 +10,7 @@ public class Carrot_1 : MonoBehaviour
     public GameObject inventorySystem;
     public GameObject playerStateController;
     public GameObject scoreController;
-    public GameObject GetCarrots;
+    public GameObject GetRice;
 
     public Transform playerPosition;
     public Vector3 playerVectorPosition;
@@ -42,21 +41,22 @@ public class Carrot_1 : MonoBehaviour
     private void OnMouseDown()
     {
         distance = Vector2.Distance(thisPosition, playerVectorPosition);
+        print("distance 확인" + distance);
 
         if (distance <= 2.0f)
         {
             playerStateController.GetComponent<PlayerStateController>().isHarvesting(currentItem);
-            if (currentItem != 0)
+            if (currentItem != 2)
             {
                 scoreController.GetComponent<ScoreController>().totalscore += (currentStageScore - 6);
                 print("도구 선택 오류!");
-                GetCarrots.GetComponent<GetCarrots>().isHarvested(4, thisPosition);
+                GetRice.GetComponent<GetRice>().isHarvested(4, thisPosition);
             }
             else
             {
                 scoreController.GetComponent<ScoreController>().totalscore += currentStageScore;
                 print("덜 큰 당근 수확!");
-                GetCarrots.GetComponent<GetCarrots>().isHarvested(1, thisPosition);
+                GetRice.GetComponent<GetRice>().isHarvested(1, thisPosition);
             }
             isObjectDestroyed = true;
             Destroy(gameObject);
