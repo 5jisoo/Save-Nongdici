@@ -22,7 +22,7 @@ public class GameSystem : MonoBehaviour
     {
         gameStart = false;
         clearAnim = stageClearWindow.GetComponent<Animator>();
-        clearScore = stageCheck*50;    
+        clearScore = stageCheck*60;    
     }
 
     // Update is called once per frame

@@ -17,8 +17,6 @@ public class SelectName : MonoBehaviour
 
     public PlayerData playerData;
 
-
-
     void Start()
     {
         playerData = Player.GetComponent<PlayerName>().playerData;

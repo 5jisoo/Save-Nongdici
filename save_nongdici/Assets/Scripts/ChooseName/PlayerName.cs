@@ -39,6 +39,8 @@ public class PlayerName : MonoBehaviour
 public class PlayerData
 {
     public string name;
-    public int score = 0;
+    public int rottenCrops = 0;
+    public int sprout = 0;
+    public int youngCrops = 0;
 }
 
