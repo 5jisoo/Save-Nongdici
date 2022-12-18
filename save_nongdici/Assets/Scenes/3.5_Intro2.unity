@@ -585,8 +585,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1419885588}
-        m_TargetAssemblyTypeName: click_skip, Assembly-CSharp
-        m_MethodName: SceneSKIP
+        m_TargetAssemblyTypeName: SkipToGame, Assembly-CSharp
+        m_MethodName: clickSKIP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -669,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.1467896, y: -42.532}
+  m_AnchoredPosition: {x: -7, y: -8}
   m_SizeDelta: {x: -222.4276, y: -268.7095}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &763990543
@@ -694,18 +694,19 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 30d76f1259834d44598d87b183c46ca4, type: 3}
-    m_FontSize: 124
+    m_FontSize: 104
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 124
+    m_MaxSize: 125
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC548\uB155 \uB098\uB294 ???(\uC774)\uC57C!"
+  m_Text: "\uB098\uB294 \uB18D\uB514\uCE58 \uAC00\uBB38\uC758 \uC720\uC77C\uD55C
+    \uD6C4\uACC4\uC790\uC57C."
 --- !u!222 &763990544
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -851,13 +852,17 @@ MonoBehaviour:
   info:
     name: ???
     sentences:
-    - "\uC548\uB155 \uB098\uB294 ???(\uC774)\uC57C!"
-    - "\uC5B4 \uB0B4 \uC774\uB984\uC774 \uC798 \uC548\uBCF4\uC774\uB098?"
-    - "\uC774\uB7F0.."
-    - "\uB0B4 \uC774\uB984\uC740..."
+    - 
+    - "\uB098\uB294 \uB18D\uB514\uCE58 \uAC00\uBB38\uC758 \uC720\uC77C\uD55C \uD6C4\uACC4\uC790."
+    - "\uBB34\uC0AC\uD788 \uD6C4\uACC4\uC790\uAC00 \uB418\uAE30 \uC704\uD574\uC11C"
+    - "\uB0B4 \uB2A5\uB825\uC744 \uC99D\uBA85\uD574\uC57C\uD574!"
+    - "\uB098\uB97C \uB3C4\uC640\uC904\uB798?"
   anim: {fileID: 1032584670}
   anim2: {fileID: 7810420734224073923}
-  setAnim: 1
+  setAnim: 0
+  playerData:
+    name: 
+    score: 0
 --- !u!4 &948623268
 Transform:
   m_ObjectHideFlags: 0
@@ -1328,7 +1333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1419885586}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a899bc464258b744393b5734c1aeee99, type: 3}
+  m_Script: {fileID: 11500000, guid: e3343b8be0928ec47b1a110f137f5396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1490868237

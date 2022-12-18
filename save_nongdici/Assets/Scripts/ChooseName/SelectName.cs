@@ -49,6 +49,6 @@ public class SelectName : MonoBehaviour
 
     public void nameConfirm()
     {
-        SceneManager.LoadScene("4_Stage1");
+        SceneManager.LoadScene("3.5_Intro2");
     }
 }
