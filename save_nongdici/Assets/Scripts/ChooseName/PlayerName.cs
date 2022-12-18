@@ -24,13 +24,13 @@ public class PlayerName : MonoBehaviour
     public void SavePlayerDataToJson()
     {
         string jsonData = JsonUtility.ToJson(playerData, true);
-        File.WriteAllText(Application.dataPath + "/JsonFiles/playerData.json", jsonData);
+        File.WriteAllText(Application.streamingAssetsPath + "/JsonFiles/playerData.json", jsonData);
     }
 
     [ContextMenu("From Json Data")]
     public void LoadPlayerDataFromJson()
     {
-        string jsonData = File.ReadAllText(Application.dataPath + "/JsonFiles/playerData.json");
+        string jsonData = File.ReadAllText(Application.streamingAssetsPath + "/JsonFiles/playerData.json");
         playerData = JsonUtility.FromJson<PlayerData>(jsonData);
     }
 }

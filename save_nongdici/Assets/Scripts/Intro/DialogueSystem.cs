@@ -19,28 +19,39 @@ public class DialogueSystem : MonoBehaviour
     public PlayerData playerData;
     private string playerName;
 
-    Queue<string> sentences = new Queue<string>();
+    public Queue<string> sentences = new Queue<string>();
 
     public void Start()
     {
         LoadPlayerDataFromJson();
         anim.SetBool("isClose", false);
-        var system = FindObjectOfType<DialogueSystem>();    //시스템에 접근
+        // Begin(info);
+        DialogueSystem system = FindObjectOfType<DialogueSystem>();    //시스템에 접근
         system.Begin(info);     //들고있는 정보를 Begin에 전달해줌. -> 그러면 DialogueSystem.cs에 있는 Begin이 시작됨.
     }
 
     public void Begin(Dialogue info)
     {
+        info.sentences.Clear();
         sentences.Clear();
 
-        if (setAnim)
+        if (setAnim)    //2
         {
+            info.name = "???";
             txtName.text = info.name;
+            info.sentences.Add("안녕 나는 ???(이)야!");
+            info.sentences.Add("어 내 이름이 잘 안보이나?");
+            info.sentences.Add("이런...");
+            info.sentences.Add("내 이름은...");
         }
-        else
+        else            // 3.5
         {
             txtName.text = playerName;
-            info.sentences[0] = $"그래. 내 이름은 {playerName}. ";
+            info.sentences.Add($"그래. 내 이름은 {playerName}. ");
+            info.sentences.Add("나는 농디치 가문의 유일한 후계자야.");
+            info.sentences.Add("내가 무사히 후계자가 되기 위해선,");
+            info.sentences.Add("내 능력을 증명해야해!");
+            info.sentences.Add("나를 도와줄래?");
         }
         
 
@@ -54,7 +65,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void Next()
     {
-        if (setAnim)
+        if (setAnim)    //2
         {
             if (sentences.Count == 0)
             {
@@ -72,11 +83,12 @@ public class DialogueSystem : MonoBehaviour
                 anim2.SetBool("head_tilt", true);
             }
         }
-        else if (setAnim == false && sentences.Count == 0)
+        else if (setAnim == false && sentences.Count == 0)  //3.5
         {
             End();
             return;
         }
+
         //txtSentence.text = sentences.Dequeue();
         textSentence = sentences.Dequeue();
 
@@ -127,11 +139,19 @@ public class DialogueSystem : MonoBehaviour
     [ContextMenu("From Json Data")]
     public void LoadPlayerDataFromJson()
     {
-        string jsonData = File.ReadAllText(Application.dataPath + "/JsonFiles/playerData.json");
+        string jsonData = File.ReadAllText(Application.streamingAssetsPath + "/JsonFiles/playerData.json");
         playerData = JsonUtility.FromJson<PlayerData>(jsonData);
         
         playerName = playerData.name;
+        Debug.Log("플레이어 데이터 불러오기 완료");
     }
+}
+
+[System.Serializable] //객체를 저장하는 용도임.
+public class Dialogue
+{
+    public string name;
+    public List<string> sentences = new List<string>();
 }
 
 
