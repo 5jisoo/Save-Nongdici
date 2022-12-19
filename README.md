@@ -39,7 +39,7 @@
 
 <br>
 
-## 🌾 게임 다운받기
+## 🌾 게임 플레이하기
 
 <a href="https://drive.google.com/file/d/1yanwCX95X7lo5WKLeLlXTWQ8K_IQtQy9/view?usp=share_link"> 다운 링크 이동하기 </a>
 
