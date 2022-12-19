@@ -41,6 +41,12 @@
 
 ## 🌾 게임 다운받기
 
+<a href="https://drive.google.com/file/d/1yanwCX95X7lo5WKLeLlXTWQ8K_IQtQy9/view?usp=share_link"> link </a>
+
+농디치가문.zip을 다운받은 뒤, 압축을 풀어주시고 .exe 파일을 실행시켜주시면 됩니다!
+
+
+
 <br>
 
 ## 🌾 플레이 영상
