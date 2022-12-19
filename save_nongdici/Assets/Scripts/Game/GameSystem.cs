@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +6,8 @@ public class GameSystem : MonoBehaviour
 {
     // 현재 스테이지 - 각 스테이지마다 미리 조정해두기.
     public int stageCheck;
+
+    public GameObject spawner;
 
     public bool gameStart;
     public int score;
@@ -22,7 +23,7 @@ public class GameSystem : MonoBehaviour
     {
         gameStart = false;
         clearAnim = stageClearWindow.GetComponent<Animator>();
-        clearScore = stageCheck*60;    
+        clearScore = stageCheck * 60;
     }
 
     // Update is called once per frame
@@ -44,6 +45,7 @@ public class GameSystem : MonoBehaviour
 
     public void nextScene()
     {
+        // SavePlayerDataToJson();
         if (stageCheck == 1)
         {
             SceneManager.LoadScene("5_Stage2");
@@ -57,4 +59,7 @@ public class GameSystem : MonoBehaviour
             SceneManager.LoadScene("Ending");
         }
     }
+
+
+
 }

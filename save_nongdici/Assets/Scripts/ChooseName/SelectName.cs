@@ -20,6 +20,9 @@ public class SelectName : MonoBehaviour
     void Start()
     {
         playerData = Player.GetComponent<PlayerName>().playerData;
+        playerData.rottenCrops = 0;
+        playerData.sprout = 0;
+        playerData.youngCrops = 0;
         confirmNameAnim = confirmName.GetComponent<Animator>();
     }
 

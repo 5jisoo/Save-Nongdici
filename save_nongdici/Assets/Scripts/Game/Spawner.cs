@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.IO;
 
 public class Spawner : MonoBehaviour
 {
@@ -29,9 +30,18 @@ public class Spawner : MonoBehaviour
 
     public bool isObjectDestroyed;
 
+    // 놓친 작물 카운트
+    private PlayerData playerData;
+    public int rottenCrops = 0;
+    public int sprout = 0;
+    public int youngCrops = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        LoadPlayerDataFromJson();
+        SavePlayerDataToJson();
         currentStage = GameSystem.GetComponent<GameSystem>().stageCheck;
         spawnCheck = new bool[11];
         for (int i = 0; i < 11; i++)
@@ -46,6 +56,7 @@ public class Spawner : MonoBehaviour
         GameStart = GameSystem.GetComponent<GameSystem>().gameStart;
         if (GameStart)
         {
+            SavePlayerDataToJson();
             if (timeSpawns <= 0)
             {
                 randomPoints = Random.Range(0, spawnPoints.Length);
@@ -122,7 +133,7 @@ public class Spawner : MonoBehaviour
         {
             // 오브젝트가 이미 수확된 경우.
             spawnCheck[point] = false;
-
+            sprout++;
             // print("새싹 이후 grow 중단 시킴");
         }
     }
@@ -171,7 +182,7 @@ public class Spawner : MonoBehaviour
         {
             // 수확 됨
             spawnCheck[point] = false;
-
+            youngCrops++;
             // print("덜 자란 작물 이후 grow 중단 시킴");
         }
 
@@ -216,7 +227,7 @@ public class Spawner : MonoBehaviour
             }
 
             scoreController.GetComponent<ScoreController>().totalscore -= 3;    // 작물이 썩은 경우
-
+            rottenCrops++;
             Destroy(clone2, .5f);
             spawnCheck[point] = false;
 
@@ -227,7 +238,24 @@ public class Spawner : MonoBehaviour
             
             // print("전부 자란 작물 이후 grow 중단 시킴"); //확인 완
         }
+    }
 
+    public void SavePlayerDataToJson()
+    {
+        playerData.rottenCrops += rottenCrops;
+        playerData.sprout += sprout;
+        playerData.youngCrops += youngCrops;
+        rottenCrops = 0;
+        sprout = 0;
+        youngCrops = 0;
+        string jsonData = JsonUtility.ToJson(playerData, true);
+        string path = Path.Combine(Application.streamingAssetsPath + "/JsonFiles/playerData.json");
+        File.WriteAllText(path, jsonData);
+    }
 
+    public void LoadPlayerDataFromJson()
+    {
+        string jsonData = File.ReadAllText(Application.streamingAssetsPath + "/JsonFiles/playerData.json");
+        playerData = JsonUtility.FromJson<PlayerData>(jsonData);
     }
 }

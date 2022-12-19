@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BtnSystem_Clear : MonoBehaviour
 {
+    public GameObject restartWindow;
     public GameObject gameSystem;
 
     private int currentStage;
@@ -19,6 +20,11 @@ public class BtnSystem_Clear : MonoBehaviour
     void Update()
     {
         currentStage = gameSystem.GetComponent<GameSystem>().stageCheck;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            restartWindow.SetActive(true);
+            gameSystem.GetComponent<GameSystem>().gameStart = false;
+        }
     }
 
     public void stageClear()
@@ -34,5 +40,18 @@ public class BtnSystem_Clear : MonoBehaviour
         {
             SceneManager.LoadScene("Ending");
         }
+    }
+
+    public void clickRestart()
+    {
+        restartWindow.SetActive(false);
+        gameSystem.GetComponent<GameSystem>().gameStart = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void cancel()
+    {
+        restartWindow.SetActive(false);
+        gameSystem.GetComponent<GameSystem>().gameStart = true;
     }
 }
